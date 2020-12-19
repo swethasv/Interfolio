@@ -26,7 +26,8 @@ public class HMAC_Encryption {
 	  public static String private_key = "H5GR667CX6G3ZZ2LQIG0D9EYM81ZJTBPB9F9N61RP5XY8JYSKHV6Y43K7TFQFN77QW6PP8V5FRJA5P9F1WNG4WMVYKSRLEE3U6YA4JD1D5M5EG1MA4Z2G3YZC5NUZEK5RI";
 	  public static String tenant_id = "17563"; //use databaseID for Faculty180 API
 	  public static String host = "https://logic-sandbox.interfolio.com";
-	
+	  
+	//This message is from swetha
 	  public static String product = "byc"; //Value should be either 'faculty180', or 'byc' (if you are using FS or RPT)
 	  //private String request_verb = "POST";
 	 
