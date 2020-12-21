@@ -4,6 +4,18 @@
   <artifactId>Interfolio_RPT</artifactId>
   <version>0.0.1-SNAPSHOT</version>
    <dependencies>  
+   	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpclient</artifactId>
+	    <version>4.5.12</version>
+	</dependency>
+   	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpmime</artifactId>
+	    <version>4.5.12</version>
+	</dependency>
    	
 	<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
 	<dependency>
