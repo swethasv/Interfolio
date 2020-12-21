@@ -15,7 +15,7 @@ public class DAOImpl {
 	
 	private String INTERFOLIO_STG_TABLE_NAME = "WC_INTER_STG_1210";
 	
-	//changes made in the file Kalmesh 
+	//changes made in the file
 	public static Connection createConnection() throws Exception {
 		try {
 			
