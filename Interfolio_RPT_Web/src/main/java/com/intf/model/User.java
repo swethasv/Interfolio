@@ -1,4 +1,4 @@
-package com.interfolio.model;
+package com.intf.model;
 
 public class User {
 

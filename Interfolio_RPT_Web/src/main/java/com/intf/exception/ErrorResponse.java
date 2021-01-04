@@ -1,4 +1,4 @@
-package com.interfolio.exception;
+package com.intf.exception;
 
 import java.util.List;
 
