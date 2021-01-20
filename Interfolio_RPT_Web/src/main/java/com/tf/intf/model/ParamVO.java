@@ -1,7 +1,6 @@
-package com.intf.model;
+package com.tf.intf.model;
 
 import java.util.Date;
-import java.util.List;
 
 public class ParamVO {
 
@@ -11,12 +10,62 @@ public class ParamVO {
 	private String candidate_first_name;
 	private String candidate_last_name;
 	private String candidate_email;
-	private List<ParamVO> paramList;
 	private Date due_at;
 	private String template_id;
-	
-	
-
+	private String file_name;
+	private String errorMsg;
+	private String reqString;
+	private String networkPath;
+	private String auditFlag;
+	private java.sql.Date processDate;
+	/**
+	 * @return the networkPath
+	 */
+	public String getNetworkPath() {
+		return networkPath;
+	}
+	/**
+	 * @param networkPath the networkPath to set
+	 */
+	public void setNetworkPath(String networkPath) {
+		this.networkPath = networkPath;
+	}
+	/**
+	 * @return the reqString
+	 */
+	public String getReqString() {
+		return reqString;
+	}
+	/**
+	 * @param reqString the reqString to set
+	 */
+	public void setReqString(String reqString) {
+		this.reqString = reqString;
+	}
+	/**
+	 * @return the errorMsg
+	 */
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+	/**
+	 * @param errorMsg the errorMsg to set
+	 */
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+	/**
+	 * @return the file_name
+	 */
+	public String getFile_name() {
+		return file_name;
+	}
+	/**
+	 * @param file_name the file_name to set
+	 */
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
 	/**
 	 * @return the template_id
 	 */
@@ -102,17 +151,23 @@ public class ParamVO {
 	public void setCandidate_email(String candidate_email) {
 		this.candidate_email = candidate_email;
 	}
-	public List<ParamVO> getParamList() {
-		return paramList;
-	}
-	public void setParamList(List<ParamVO> paramList) {
-		this.paramList = paramList;
-	}
 	public Date getDue_at() {
 		return due_at;
 	}
 	public void setDue_at(Date due_at) {
 		this.due_at = due_at;
+	}
+	public String getAuditFlag() {
+		return auditFlag;
+	}
+	public void setAuditFlag(String auditFlag) {
+		this.auditFlag = auditFlag;
+	}
+	public java.sql.Date getProcessDate() {
+		return processDate;
+	}
+	public void setProcessDate(java.sql.Date processDate) {
+		this.processDate = processDate;
 	}
 
 	

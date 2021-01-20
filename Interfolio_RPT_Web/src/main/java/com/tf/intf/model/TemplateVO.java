@@ -1,6 +1,6 @@
-package com.intf.model;
+package com.tf.intf.model;
 
-public class Template {
+public class TemplateVO {
 
 	private String templateId;
 

@@ -1,4 +1,4 @@
-package com.intf.exception;
+package com.tf.intf.exception;
 
 import java.util.List;
 

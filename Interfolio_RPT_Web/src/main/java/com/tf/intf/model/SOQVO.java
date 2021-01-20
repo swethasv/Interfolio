@@ -1,4 +1,4 @@
-package com.intf.model;
+package com.tf.intf.model;
 
 public class SOQVO {
 

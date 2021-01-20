@@ -1,6 +1,6 @@
-package com.intf.model;
+package com.tf.intf.model;
 
-public class User {
+public class UserVO {
 
 	private String firstName;
 	private String lastName;

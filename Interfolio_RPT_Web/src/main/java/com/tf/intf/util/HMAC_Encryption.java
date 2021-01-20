@@ -1,4 +1,4 @@
-package com.intf.util;
+package com.tf.intf.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -140,7 +140,7 @@ public class HMAC_Encryption {
 		    conn.setRequestMethod(request_verb);
 		    conn.setDoInput(true);
 			conn.setDoOutput(true);		    
-		    conn.setRequestProperty("User-Agent", "Java client");
+		    conn.setRequestProperty("UserVO-Agent", "Java client");
 		    conn.setRequestProperty("Accept", "application/json");
 		    conn.setRequestProperty("Content-Type", "application/json");
 			//conn.setRequestProperty("Content-Type", "multipart/form-data");
