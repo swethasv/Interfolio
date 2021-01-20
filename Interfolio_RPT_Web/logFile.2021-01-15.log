@@ -1,0 +1,1140 @@
+02:58:16.562 [main] INFO  com.intf.InterfolioApplication - Starting InterfolioApplication on dhodiclient with PID 5976 (C:\Users\c-disundar\git\Interfolio_web\Interfolio_RPT_Web\target\classes started by c-disundar in C:\Users\c-disundar\git\Interfolio_web\Interfolio_RPT_Web)
+02:58:16.570 [main] INFO  com.intf.InterfolioApplication - The following profiles are active: DEV
+02:58:16.898 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@673be18f: startup date [Fri Jan 15 02:58:16 PST 2021]; root of context hierarchy
+02:58:18.466 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+02:58:18.484 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+02:58:18.503 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+02:58:18.503 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.34
+02:58:18.515 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Users\c-disundar\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Users/c-disundar/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin/server;C:/Users/c-disundar/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Pragma\Clients;C:\Windows\system32;;.]
+02:58:18.915 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/owm/jlib/owm-3_0.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\owm\jlib\owm-3_0.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+02:58:18.917 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/owm-3_0.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\owm-3_0.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+02:58:18.918 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/osdt_core.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\osdt_core.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+02:58:18.920 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/osdt_cert.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\osdt_cert.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+02:58:18.925 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/ldap/jlib/osdt_core.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\ldap\jlib\osdt_core.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+02:58:18.926 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/ldap/jlib/osdt_cert.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\ldap\jlib\osdt_cert.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+02:58:18.929 [localhost-startStop-1] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+02:58:18.942 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+02:58:18.942 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2045 ms
+02:58:19.034 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Servlet dispatcherServlet mapped to [/]
+02:58:19.041 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+02:58:19.042 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+02:58:19.042 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+02:58:19.042 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+02:58:19.261 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+02:58:19.416 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@673be18f: startup date [Fri Jan 15 02:58:16 PST 2021]; root of context hierarchy
+02:58:19.478 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getData],methods=[GET],produces=[application/json]}" onto public com.intf.model.UserVO com.intf.controller.Controller.getData()
+02:58:19.478 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadGradedClassReport],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadGradedClassReport() throws java.io.IOException
+02:58:19.479 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadSOQCommentsFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadSOQCommentsFile() throws java.io.IOException
+02:58:19.479 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getUser],methods=[POST]}" onto public com.intf.model.UserVO com.intf.controller.Controller.getUser(com.intf.model.UserVO)
+02:58:19.479 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/createCase/{template_id}],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.createCase(java.lang.String) throws java.io.IOException
+02:58:19.479 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/deleteUploadedFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.deleteUploadedFile() throws java.io.IOException
+02:58:19.480 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/ || /interfolio/hello],methods=[GET]}" onto public java.lang.String com.intf.controller.Controller.hello(org.springframework.ui.Model,java.lang.String)
+02:58:19.480 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getTemplateId],methods=[GET],produces=[application/json]}" onto public java.util.Map<java.lang.Object, java.lang.Object> com.intf.controller.Controller.getTemplateId()
+02:58:19.480 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadSOQStatsFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadSOQStatsFile() throws java.io.IOException
+02:58:19.480 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.intf.controller.HomePageController.homePage()
+02:58:19.482 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+02:58:19.482 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+02:58:19.501 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+02:58:19.501 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+02:58:19.741 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+02:58:19.743 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+02:58:19.747 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+02:58:19.754 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+02:58:19.810 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+02:58:19.841 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+02:58:19.845 [main] INFO  com.intf.InterfolioApplication - Started InterfolioApplication in 3.965 seconds (JVM running for 4.733)
+03:05:26.585 [main] INFO  com.intf.InterfolioApplication - Starting InterfolioApplication on dhodiclient with PID 344 (C:\Users\c-disundar\git\Interfolio_web\Interfolio_RPT_Web\target\classes started by c-disundar in C:\Users\c-disundar\git\Interfolio_web\Interfolio_RPT_Web)
+03:05:26.588 [main] INFO  com.intf.InterfolioApplication - The following profiles are active: DEV
+03:05:26.951 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ca30bc1: startup date [Fri Jan 15 03:05:26 PST 2021]; root of context hierarchy
+03:05:28.709 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+03:05:28.727 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:05:28.743 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:05:28.743 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.34
+03:05:28.753 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Users\c-disundar\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Users/c-disundar/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin/server;C:/Users/c-disundar/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Pragma\Clients;C:\Windows\system32;;.]
+03:05:29.063 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/owm/jlib/owm-3_0.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\owm\jlib\owm-3_0.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:05:29.064 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/owm-3_0.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\owm-3_0.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:05:29.066 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/osdt_core.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\osdt_core.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:05:29.072 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/osdt_cert.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\osdt_cert.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:05:29.074 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/ldap/jlib/osdt_core.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\ldap\jlib\osdt_core.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:05:29.078 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/ldap/jlib/osdt_cert.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\ldap\jlib\osdt_cert.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:05:29.083 [localhost-startStop-1] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+03:05:29.100 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:05:29.100 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2150 ms
+03:05:29.194 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Servlet dispatcherServlet mapped to [/]
+03:05:29.197 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+03:05:29.198 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+03:05:29.198 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+03:05:29.198 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+03:05:29.368 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:05:29.539 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ca30bc1: startup date [Fri Jan 15 03:05:26 PST 2021]; root of context hierarchy
+03:05:29.602 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getData],methods=[GET],produces=[application/json]}" onto public com.intf.model.UserVO com.intf.controller.Controller.getData()
+03:05:29.603 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadSOQCommentsFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadSOQCommentsFile() throws java.io.IOException
+03:05:29.603 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadGradedClassReport],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadGradedClassReport() throws java.io.IOException
+03:05:29.604 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getUser],methods=[POST]}" onto public com.intf.model.UserVO com.intf.controller.Controller.getUser(com.intf.model.UserVO)
+03:05:29.604 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/ || /interfolio/hello],methods=[GET]}" onto public java.lang.String com.intf.controller.Controller.hello(org.springframework.ui.Model,java.lang.String)
+03:05:29.604 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/createCase/{template_id}],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.createCase(java.lang.String) throws java.io.IOException
+03:05:29.604 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getTemplateId],methods=[GET],produces=[application/json]}" onto public java.util.Map<java.lang.Object, java.lang.Object> com.intf.controller.Controller.getTemplateId()
+03:05:29.605 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadSOQStatsFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadSOQStatsFile() throws java.io.IOException
+03:05:29.605 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/deleteUploadedFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.deleteUploadedFile() throws java.io.IOException
+03:05:29.605 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.intf.controller.HomePageController.homePage()
+03:05:29.608 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+03:05:29.608 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+03:05:29.624 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:05:29.625 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:05:29.930 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+03:05:29.932 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+03:05:29.935 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+03:05:29.944 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:05:29.989 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+03:05:30.014 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+03:05:30.023 [main] INFO  com.intf.InterfolioApplication - Started InterfolioApplication in 4.106 seconds (JVM running for 4.871)
+03:10:44.603 [main] INFO  com.intf.InterfolioApplication - Starting InterfolioApplication on dhodiclient with PID 6392 (C:\Users\c-disundar\git\Interfolio_web\Interfolio_RPT_Web\target\classes started by c-disundar in C:\Users\c-disundar\git\Interfolio_web\Interfolio_RPT_Web)
+03:10:44.606 [main] INFO  com.intf.InterfolioApplication - The following profiles are active: DEV
+03:10:44.848 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4f3bbf68: startup date [Fri Jan 15 03:10:44 PST 2021]; root of context hierarchy
+03:10:46.549 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+03:10:46.566 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:10:46.581 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:10:46.581 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.34
+03:10:46.603 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Users\c-disundar\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Users/c-disundar/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin/server;C:/Users/c-disundar/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Pragma\Clients;C:\Windows\system32;;.]
+03:10:46.930 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/owm/jlib/owm-3_0.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\owm\jlib\owm-3_0.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:10:46.931 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/owm-3_0.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\owm-3_0.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:10:46.932 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/osdt_core.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\osdt_core.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:10:46.972 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/osdt_cert.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\osdt_cert.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:10:46.973 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/ldap/jlib/osdt_core.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\ldap\jlib\osdt_core.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:10:46.974 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/ldap/jlib/osdt_cert.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\ldap\jlib\osdt_cert.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:10:46.977 [localhost-startStop-1] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+03:10:46.988 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:10:46.989 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2141 ms
+03:10:47.066 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Servlet dispatcherServlet mapped to [/]
+03:10:47.069 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+03:10:47.075 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+03:10:47.077 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+03:10:47.077 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+03:10:47.357 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:10:47.550 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4f3bbf68: startup date [Fri Jan 15 03:10:44 PST 2021]; root of context hierarchy
+03:10:47.608 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getData],methods=[GET],produces=[application/json]}" onto public com.intf.model.UserVO com.intf.controller.Controller.getData()
+03:10:47.608 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getTemplateId],methods=[GET],produces=[application/json]}" onto public java.util.Map<java.lang.Object, java.lang.Object> com.intf.controller.Controller.getTemplateId()
+03:10:47.609 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/ || /interfolio/hello],methods=[GET]}" onto public java.lang.String com.intf.controller.Controller.hello(org.springframework.ui.Model,java.lang.String)
+03:10:47.609 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadSOQStatsFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadSOQStatsFile() throws java.io.IOException
+03:10:47.609 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/createCase/{template_id}],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.createCase(java.lang.String) throws java.io.IOException
+03:10:47.609 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getUser],methods=[POST]}" onto public com.intf.model.UserVO com.intf.controller.Controller.getUser(com.intf.model.UserVO)
+03:10:47.610 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/deleteUploadedFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.deleteUploadedFile() throws java.io.IOException
+03:10:47.610 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadGradedClassReport],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadGradedClassReport() throws java.io.IOException
+03:10:47.610 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadSOQCommentsFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadSOQCommentsFile() throws java.io.IOException
+03:10:47.610 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.intf.controller.HomePageController.homePage()
+03:10:47.612 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+03:10:47.612 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+03:10:47.629 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:10:47.629 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:10:47.981 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+03:10:47.983 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+03:10:47.987 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+03:10:47.996 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:10:48.104 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+03:10:48.123 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+03:10:48.388 [main] INFO  com.intf.InterfolioApplication - Started InterfolioApplication in 4.482 seconds (JVM running for 5.233)
+03:11:24.382 [main] INFO  com.intf.InterfolioApplication - Starting InterfolioApplication on dhodiclient with PID 5280 (C:\Users\c-disundar\git\Interfolio_web\Interfolio_RPT_Web\target\classes started by c-disundar in C:\Users\c-disundar\git\Interfolio_web\Interfolio_RPT_Web)
+03:11:24.399 [main] INFO  com.intf.InterfolioApplication - The following profiles are active: DEV
+03:11:24.717 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ca30bc1: startup date [Fri Jan 15 03:11:24 PST 2021]; root of context hierarchy
+03:11:26.357 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+03:11:26.375 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:11:26.386 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:11:26.386 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.34
+03:11:26.396 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Users\c-disundar\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Users/c-disundar/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin/server;C:/Users/c-disundar/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Pragma\Clients;C:\Windows\system32;;.]
+03:11:26.729 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/owm/jlib/owm-3_0.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\owm\jlib\owm-3_0.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:11:26.731 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/owm-3_0.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\owm-3_0.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:11:26.732 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/osdt_core.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\osdt_core.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:11:26.741 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/oraclepki/11.2.0.4/osdt_cert.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\oraclepki\11.2.0.4\osdt_cert.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:11:26.742 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/ldap/jlib/osdt_core.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\ldap\jlib\osdt_core.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:11:26.743 [localhost-startStop-1] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/c-disundar/.m2/repository/com/oracle/database/security/ldap/jlib/osdt_cert.jar] from classloader hierarchy
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:278)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5245)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1420)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1410)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209)
+	... 17 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\c-disundar\.m2\repository\com\oracle\database\security\ldap\jlib\osdt_cert.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:198)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1843)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1198)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:701)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:240)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:171)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:347)
+	... 22 common frames omitted
+03:11:26.751 [localhost-startStop-1] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+03:11:26.766 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:11:26.766 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2049 ms
+03:11:26.859 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Servlet dispatcherServlet mapped to [/]
+03:11:26.863 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+03:11:26.866 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+03:11:26.870 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+03:11:26.870 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+03:11:27.134 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:11:27.308 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ca30bc1: startup date [Fri Jan 15 03:11:24 PST 2021]; root of context hierarchy
+03:11:27.400 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getData],methods=[GET],produces=[application/json]}" onto public com.intf.model.UserVO com.intf.controller.Controller.getData()
+03:11:27.400 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadGradedClassReport],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadGradedClassReport() throws java.io.IOException
+03:11:27.401 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadSOQCommentsFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadSOQCommentsFile() throws java.io.IOException
+03:11:27.401 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/ || /interfolio/hello],methods=[GET]}" onto public java.lang.String com.intf.controller.Controller.hello(org.springframework.ui.Model,java.lang.String)
+03:11:27.402 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getUser],methods=[POST]}" onto public com.intf.model.UserVO com.intf.controller.Controller.getUser(com.intf.model.UserVO)
+03:11:27.402 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/createCase/{template_id}],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.createCase(java.lang.String) throws java.io.IOException
+03:11:27.402 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/uploadSOQStatsFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.uploadSOQStatsFile() throws java.io.IOException
+03:11:27.403 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/deleteUploadedFile],methods=[GET],produces=[application/json]}" onto public java.lang.String com.intf.controller.Controller.deleteUploadedFile() throws java.io.IOException
+03:11:27.403 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/interfolio/getTemplateId],methods=[GET],produces=[application/json]}" onto public java.util.Map<java.lang.Object, java.lang.Object> com.intf.controller.Controller.getTemplateId()
+03:11:27.404 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.intf.controller.HomePageController.homePage()
+03:11:27.409 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+03:11:27.409 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+03:11:27.442 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:11:27.447 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+03:11:27.797 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+03:11:27.799 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+03:11:27.804 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+03:11:27.815 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:11:27.891 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+03:11:27.918 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+03:11:27.920 [main] INFO  com.intf.InterfolioApplication - Started InterfolioApplication in 4.173 seconds (JVM running for 4.897)
