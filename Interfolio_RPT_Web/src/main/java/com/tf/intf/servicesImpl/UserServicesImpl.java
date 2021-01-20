@@ -1,6 +1,7 @@
 package com.tf.intf.servicesImpl;
 
 import java.io.IOException;
+import java.lang.constant.Constable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -347,28 +348,30 @@ public class UserServicesImpl implements UserServices {
 	public String caseAndFileValidation() {
 		String response = "Success";
 		boolean fileValidationReturn = false;
-		boolean caseValidationReturn = false;
+		List<ParamVO> param_List = new ArrayList<ParamVO>();
+		ParamVO paramVO = null;
 		try {
 			List<ParamVO> paramList = dao.getSOQFilesFromDataBase(Constants.FILE_TO_UPLOAD);
 			if (paramList != null && paramList.size() != 0) {
 				System.out.println("Process started at - " + new Date());
 				System.out.println("Process started for - " + paramList.size() + " records");
 				for (ParamVO tmpVO : paramList) {
-					caseValidationReturn = intfUtils.checkIfCaseExists(tmpVO);
-					if (caseValidationReturn) {
+					paramVO = new ParamVO();
+					paramVO.setProcessDate(intfUtils.getSysdate());
+					paramVO = intfUtils.checkIfCaseExists(tmpVO);
+					if (paramVO.getResult()) {
 						tmpVO.setNetworkPath(Constants.NETWORKPATH);
-						fileValidationReturn = intfUtils.checkFileInNetworkPath(tmpVO);
-						if (!fileValidationReturn) {
-							dao.updateSOQAuditFlg(tmpVO, Constants.FILE_NOT_FOUND);
+						paramVO = intfUtils.checkFileInNetworkPath(tmpVO);
+						if (!paramVO.getResult()) {
+							paramVO.setAuditFlag(Constants.FILE_NOT_FOUND);
+							paramVO.setErrorMsg(tmpVO.getFile_name()+" - "+"not found in network path");
 						}
-					} else {
-						// Method call to update flag as F
-
-					}
-
+					} 
+					param_List.add(paramVO);
 				}
 				System.out.println("Process completed for - " + paramList.size() + " records");
 				System.out.println("Process completed at - " + new Date());
+				dao.batchUpdateSOQAuditFlag(param_List);
 			}
 		} catch (
 

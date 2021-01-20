@@ -371,7 +371,7 @@ public class IntfUtils {
 
 	}
 
-	public boolean checkFileInNetworkPath(ParamVO paramVO) throws IOException {
+	public ParamVO checkFileInNetworkPath(ParamVO paramVO) throws IOException {
 		URL url = null;
 		InputStream inputStream = null;
 		URLConnection conn = null;
@@ -383,10 +383,12 @@ public class IntfUtils {
 			conn.setRequestProperty("UserVO-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 			inputStream = conn.getInputStream();
 			if (inputStream != null) {
-				success = true;
+				paramVO.setResult(true);
+			}else {
+				paramVO.setResult(false);
 			}
 		} catch (IOException e) {
-			success = false;
+			paramVO.setResult(false);
 		} finally {
 			if (conn != null) {
 				conn = null;
@@ -395,11 +397,10 @@ public class IntfUtils {
 				inputStream.close();
 			}
 		}
-		return success;
+		return paramVO;
 	}
 
-	public boolean checkIfCaseExists(ParamVO paramVO) {
-		boolean result = false;
+	public ParamVO checkIfCaseExists(ParamVO paramVO) {
 		String requestVerb = Constants.REQ_GET;
 		String request_string = Constants.APICALLPART1 + HMAC_Encryption.tenant_id + "/packets"
 				+ Constants.APICALLWITHSEARCHTEXT
@@ -424,10 +425,12 @@ public class IntfUtils {
 			if (conn.getResponseCode() != 200) {
 				System.out.println(conn.getResponseCode());
 				paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string + conn.getResponseCode());
-				dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
+				paramVO.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
+				paramVO.setResult(false);
 				throw new IOException(conn.getResponseMessage());
 			} else {
-				result = true;
+				paramVO.setErrorMsg(null);
+				paramVO.setResult(true);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -436,7 +439,7 @@ public class IntfUtils {
 				conn.disconnect();
 			}
 		}
-		return result;
+		return paramVO;
 	}
 
 	public String createCase(ParamVO tmpVO) throws IOException {

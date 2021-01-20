@@ -16,8 +16,9 @@ public class ParamVO {
 	private String errorMsg;
 	private String reqString;
 	private String networkPath;
-	private String auditFlag;
+	private String auditFlag = "N";
 	private java.sql.Date processDate;
+	private Boolean result;
 	/**
 	 * @return the networkPath
 	 */
@@ -168,6 +169,12 @@ public class ParamVO {
 	}
 	public void setProcessDate(java.sql.Date processDate) {
 		this.processDate = processDate;
+	}
+	public Boolean getResult() {
+		return result;
+	}
+	public void setResult(Boolean result) {
+		this.result = result;
 	}
 
 	
