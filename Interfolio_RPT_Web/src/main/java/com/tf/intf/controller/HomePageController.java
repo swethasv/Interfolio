@@ -7,6 +7,6 @@ public class HomePageController {
 
 	@GetMapping(value = "/")
 	public String homePage() {
-		return "uploadSOQFile";
+		return "createCase";
 	}
 }

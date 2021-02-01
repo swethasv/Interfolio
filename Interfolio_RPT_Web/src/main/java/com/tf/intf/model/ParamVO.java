@@ -1,5 +1,6 @@
 package com.tf.intf.model;
 
+import java.io.File;
 import java.util.Date;
 
 public class ParamVO {
@@ -18,7 +19,15 @@ public class ParamVO {
 	private String networkPath;
 	private String auditFlag = "N";
 	private java.sql.Date processDate;
-	private Boolean result;
+	private Boolean result = false;
+	private int applicant_id;
+	private int section_id;
+	private Integer requirement_id;
+	private int case_id;
+	private String templateName;
+	private int media_id;
+	private String response;
+	private String file_data;
 	/**
 	 * @return the networkPath
 	 */
@@ -176,6 +185,52 @@ public class ParamVO {
 	public void setResult(Boolean result) {
 		this.result = result;
 	}
-
-	
+	public int getApplicant_id() {
+		return applicant_id;
+	}
+	public void setApplicant_id(int applicant_id) {
+		this.applicant_id = applicant_id;
+	}
+	public int getSection_id() {
+		return section_id;
+	}
+	public void setSection_id(int section_id) {
+		this.section_id = section_id;
+	}
+	public Integer getRequirement_id() {
+		return requirement_id;
+	}
+	public void setRequirement_id(Integer requirement_id) {
+		this.requirement_id = requirement_id;
+	}
+	public int getCase_id() {
+		return case_id;
+	}
+	public void setCase_id(int case_id) {
+		this.case_id = case_id;
+	}
+	public String getTemplateName() {
+		return templateName;
+	}
+	public void setTemplateName(String templateName) {
+		this.templateName = templateName;
+	}
+	public int getMedia_id() {
+		return media_id;
+	}
+	public void setMedia_id(int media_id) {
+		this.media_id = media_id;
+	}
+	public String getResponse() {
+		return response;
+	}
+	public void setResponse(String response) {
+		this.response = response;
+	}
+	public String getFile_data() {
+		return file_data;
+	}
+	public void setFile_data(String file_data) {
+		this.file_data = file_data;
+	}
 }

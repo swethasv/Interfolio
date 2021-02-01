@@ -2,6 +2,7 @@ package com.tf.intf.DAO;
 
 import java.util.List;
 
+import com.tf.intf.model.InputSourceVO;
 import com.tf.intf.model.ParamVO;
 import com.tf.intf.model.TemplateVO;
 
@@ -11,7 +12,7 @@ public interface DAO {
 
 	List<ParamVO> getSOQFileDetails(String fILE_TO_UPLOAD, String sOQ_STAT_FILE_TYPE);
 
-	List<ParamVO> getCaseCreateData(String fILE_TO_UPLOAD);
+	List<ParamVO> getCaseCreateData(String template_id, String fILE_TO_UPLOAD);
 
 	void updateSOQAuditFlg(ParamVO paramVO, String fILE_IN_RUNNING_STATE);
 
@@ -22,5 +23,9 @@ public interface DAO {
 	void updateCaseCreateAuditFlag(ParamVO tmpVO, String cASE_CREATE_FLAG);
 	
 	public int[] batchUpdateSOQAuditFlag(List<ParamVO> param);
+
+	public int[] createDataFromInputSource(List<InputSourceVO> listInputSourceVO);
+
+	public int deleteRecords();
 
 }

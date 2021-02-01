@@ -3,7 +3,7 @@ package com.tf.intf.util;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,29 +12,37 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 
-import com.tf.intf.DAO.DAO;
-import com.tf.intf.model.CaseDetailsVO;
+import com.google.common.collect.ObjectArrays;
+import com.tf.intf.model.InputSourceVO;
 import com.tf.intf.model.ParamVO;
 
 @Component
 public class IntfUtils {
 
-	@Autowired
-	DAO dao;
-	
 	@Autowired
 	HMAC_Encryption hmc_Encryption;
 
@@ -53,7 +61,7 @@ public class IntfUtils {
 		return sqlDate;
 	}
 
-	public void getFileFromNetwork(ParamVO paramVO) {
+	public ParamVO getFileFromNetwork(ParamVO paramVO) {
 		URL url = null;
 		File saveDir = null;
 		try {
@@ -76,12 +84,13 @@ public class IntfUtils {
 			if (inputStream != null) {
 				inputStream.close();
 			}
+			paramVO.setResult(true);
 		} catch (IOException e) {
-			String errMsg = url + " not found in the network path";
-			System.out.println(errMsg);
-			paramVO.setErrorMsg(errMsg);
-			dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
+			paramVO.setResult(false);
+			paramVO.setErrorMsg(url + " not found in the network path");
+			paramVO.setAuditFlag(Constants.FILE_NOT_FOUND);
 		}
+		return paramVO;
 	}
 
 	private static byte[] readInputStream(InputStream inputStream) throws IOException {
@@ -101,22 +110,24 @@ public class IntfUtils {
 	 * @param paramVO
 	 * @return templateName
 	 */
-	private String getTemplateName(ParamVO paramVO) throws Exception {
+	private ParamVO getTemplateName(ParamVO paramVO) throws Exception {
 		String templateName = null;
-		String request_string = Constants.APICALLPART1 + HMAC_Encryption.tenant_id + "/packet_templates/"
+		ParamVO param = null;
+		String request_string = Constants.APICALLPART1 + hmc_Encryption.getTenantId() + "/packet_templates/"
 				+ paramVO.getTemplate_id();
 		String request_verb = Constants.REQ_GET;
-		String result = getAPIResponse(request_string, request_verb, paramVO);
-		if (result != null) {
-			JSONObject jsonObject = new JSONObject(result);
+		param = getAPIResponse(request_string, request_verb);
+		if (param.getResponse() != null) {
+			JSONObject jsonObject = new JSONObject(param.getResponse());
 			JSONObject jsonObject1 = (JSONObject) jsonObject.get("packet_template");
 			templateName = (String) jsonObject1.get("name");
 			templateName = templateName.replace(" ", Constants.REPLACE_WHITESPACE);
+			param.setTemplateName(templateName);
 		} else {
-			paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string);
-			dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
+			param.setErrorMsg(Constants.GENERICERRMESSAGE + request_string);
+			param.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
 		}
-		return templateName;
+		return param;
 	}
 
 	/**
@@ -126,18 +137,19 @@ public class IntfUtils {
 	 * @param packetSectionName
 	 * @return requirement ID and applicant ID as part of the caseDetails object
 	 */
-	public CaseDetailsVO getCaseDetails(ParamVO paramVO, String packetSectionName) {
-		CaseDetailsVO caseDetails = new CaseDetailsVO();
+	public ParamVO getCaseDetails(ParamVO paramVO, String packetSectionName) {
 		String request_string = null;
+		ParamVO param = null;
 		try {
-			int caseID = getCaseID(paramVO);
-			request_string = Constants.APICALLPART1 + HMAC_Encryption.tenant_id + "/packets/" + caseID;
-			if (caseID > 0) {
+			param = getCaseID(paramVO);
+			request_string = Constants.APICALLPART1 + hmc_Encryption.getTenantId() + "/packets/" + param.getCase_id();
+			if (param.getCase_id() > 0) {
 				String request_verb = Constants.REQ_GET;
-				JSONObject jsonObject;
-				jsonObject = new JSONObject(getAPIResponse(request_string, request_verb, paramVO));
+				param = getAPIResponse(request_string, request_verb);
+				String APIResult = param.getResponse();
+				JSONObject jsonObject = new JSONObject(APIResult);
 				JSONObject jsonObject1 = (JSONObject) jsonObject.get(Constants.PACKET);
-				caseDetails.setApplicant_id((int) jsonObject1.get(Constants.APP_ID));
+				paramVO.setApplicant_id((int) jsonObject1.get(Constants.APP_ID));
 				JSONArray jsonArray = (JSONArray) jsonObject1.get(Constants.REQ_BY_SEC);
 				JSONObject jsonObject2 = new JSONObject();
 				JSONArray jsonArray1 = new JSONArray();
@@ -151,20 +163,22 @@ public class IntfUtils {
 				if (!jsonArray1.isEmpty()) {
 					JSONArray jsonArray3 = (JSONArray) jsonArray1.get(0);
 					jsonObject2 = (JSONObject) jsonArray3.get(0);
-					caseDetails.setRequirement_id((int) jsonObject2.get("id"));
+					paramVO.setRequirement_id((int) jsonObject2.get("id"));
+					paramVO.setResult(true);
 
 				} else {
 					paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string + " in getCaseDetails method");
-					dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
+					paramVO.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
+					paramVO.setResult(false);
 				}
 			}
 		} catch (Exception e) {
 			paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string + " in getCaseDetails method");
-			dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
-			System.out.println(e.getMessage());
+			paramVO.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
+			paramVO.setResult(false);
 		}
 
-		return caseDetails;
+		return paramVO;
 	}
 
 	/**
@@ -173,8 +187,11 @@ public class IntfUtils {
 	 * @param paramVO
 	 * @return caseID
 	 */
-	public int getCaseID(ParamVO paramVO) throws Exception {
+	public ParamVO getCaseID(ParamVO paramVO) throws Exception {
 		int result = 0;
+		ParamVO param = null;
+		String templateName = null;
+		String APIResult = null;
 		List<Integer> caseArrUsingCandName = new ArrayList<Integer>();
 		List<Integer> caseArrUsingTempName = new ArrayList<Integer>();
 		String request_verb = Constants.REQ_GET;
@@ -182,12 +199,14 @@ public class IntfUtils {
 		JSONObject jsonObject2 = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
 		// Get the template name based on template ID
-		String templateName = getTemplateName(paramVO);
+		param = getTemplateName(paramVO);
+		templateName = param.getTemplateName();
 		// Get the case ID based on candidate name as a search text
-		String request_string = Constants.APICALLPART1 + HMAC_Encryption.tenant_id + "/packets"
+		String request_string = Constants.APICALLPART1 + hmc_Encryption.getTenantId() + "/packets"
 				+ Constants.APICALLWITHSEARCHTEXT
 				+ paramVO.getCandidate_first_name().replace(" ", Constants.REPLACE_WHITESPACE);
-		String APIResult = getAPIResponse(request_string, request_verb, paramVO);
+		param = getAPIResponse(request_string, request_verb);
+		APIResult = param.getResponse();
 		if (APIResult != null) {
 			jsonObject = new JSONObject(APIResult);
 			jsonObject2 = new JSONObject();
@@ -198,17 +217,16 @@ public class IntfUtils {
 					caseArrUsingCandName.add((Integer) jsonObject2.get("id"));
 				}
 			} else {
-				System.out.println("No results found in " + request_string);
-				paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string);
-				dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
+				param.setErrorMsg(Constants.GENERICERRMESSAGE + request_string);
+				param.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
 			}
 		}
 
-		if (templateName != null && caseArrUsingCandName.size() > 0) {
+		if (templateName != null && caseArrUsingCandName.size() > 1) {
 			// Get the case ID based on template name as a search text
-			request_string = Constants.APICALLPART1 + HMAC_Encryption.tenant_id + "/packets"
+			request_string = Constants.APICALLPART1 + hmc_Encryption.getTenantId() + "/packets"
 					+ Constants.APICALLWITHSEARCHTEXT + templateName;
-			jsonObject = new JSONObject(getAPIResponse(request_string, request_verb, paramVO));
+			jsonObject = new JSONObject(getAPIResponse(request_string, request_verb));
 			jsonObject2 = new JSONObject();
 			jsonArray = (JSONArray) jsonObject.get("results");
 			for (int i = 0; i < jsonArray.length(); i++) {
@@ -217,14 +235,15 @@ public class IntfUtils {
 			}
 			// Fetch the case ID that is common between the above two API calls
 			caseArrUsingCandName.retainAll(caseArrUsingTempName);
-			if (!caseArrUsingCandName.isEmpty()) {
-				result = caseArrUsingCandName.get(0);
-			} else {
-				paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string);
-				dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
-			}
 		}
-		return result;
+		if (!caseArrUsingCandName.isEmpty()) {
+			result = caseArrUsingCandName.get(0);
+			param.setCase_id(result);
+		} else {
+			param.setErrorMsg(Constants.GENERICERRMESSAGE + request_string);
+			param.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
+		}
+		return param;
 	}
 
 	/**
@@ -236,10 +255,9 @@ public class IntfUtils {
 	 * @param paramVO
 	 * @return API response
 	 */
-	public String getAPIResponse(String reqMethod, String requestVerb, ParamVO paramVO) {
-		String full_request = HMAC_Encryption.host + reqMethod + "";
-		// System.out.println("Calling: " + full_request);
-		HMAC_Encryption hmac = new HMAC_Encryption();
+	public ParamVO getAPIResponse(String reqMethod, String requestVerb) {
+		String full_request = hmc_Encryption.getHost() + reqMethod + "";
+		ParamVO param = new ParamVO();
 		StringBuilder sb = null;
 		URL url;
 		HttpURLConnection conn = null;
@@ -247,19 +265,18 @@ public class IntfUtils {
 		try {
 			url = new URL(full_request);
 			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestProperty("Timestamp", hmac.timestampString());
-			conn.setRequestProperty("Authorization", hmac.gen_HMAC(reqMethod, "", requestVerb));
-			conn.setRequestProperty("INTF-DatabaseID", HMAC_Encryption.tenant_id);
+			conn.setRequestProperty("Timestamp", timestampString());
+			conn.setRequestProperty("Authorization", hmc_Encryption.gen_HMAC(reqMethod, "", requestVerb));
+			conn.setRequestProperty("INTF-DatabaseID", hmc_Encryption.getTenantId());
 			conn.setRequestMethod(requestVerb);
 			conn.setDoInput(true);
 			conn.setDoOutput(true);
-			conn.setRequestProperty("UserVO-Agent", "Java client");
+			conn.setRequestProperty("User-Agent", "Java client");
 			conn.setRequestProperty("Accept", "application/json");
 			conn.setRequestProperty("Content-Type", "application/json");
 			if (conn.getResponseCode() != 200) {
-				System.out.println(conn.getResponseCode());
-				paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + reqMethod);
-				dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
+				param.setErrorMsg(Constants.GENERICERRMESSAGE + reqMethod);
+				param.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
 				throw new IOException(conn.getResponseMessage());
 			}
 			// Buffer the result into a string
@@ -282,22 +299,24 @@ public class IntfUtils {
 			result = null;
 		else
 			result = sb.toString();
-		return result;
+
+		param.setResponse(result);
+		return param;
 	}
 
-	// Added by Kalmesh on 08/01/2021 for delete document
-	public CaseDetailsVO getCaseDetailsForDelete(ParamVO paramVO) {
-		CaseDetailsVO caseDetails = new CaseDetailsVO();
+	public ParamVO getMediaId(ParamVO paramVO) {
+		ParamVO param = null;
 		String request_string = null;
 		try {
-			int caseID = getCaseID(paramVO);
-			request_string = Constants.APICALLPART1 + HMAC_Encryption.tenant_id + "/packets/" + caseID;
-			if (caseID > 0) {
+			param = getCaseID(paramVO);
+			request_string = Constants.APICALLPART1 + hmc_Encryption.getTenantId() + "/packets/" + param.getCase_id();
+			if (param.getCase_id() > 0) {
 				String request_verb = Constants.REQ_GET;
-				JSONObject jsonObject;
-				jsonObject = new JSONObject(getAPIResponse(request_string, request_verb, paramVO));
+				param = getAPIResponse(request_string, request_verb);
+				String APIResult = param.getResponse();
+				JSONObject jsonObject = new JSONObject(APIResult);
 				JSONObject jsonObject1 = (JSONObject) jsonObject.get(Constants.PACKET);
-				caseDetails.setApplicant_id((int) jsonObject1.get(Constants.APP_ID));
+				param.setApplicant_id((int) jsonObject1.get(Constants.APP_ID));
 				JSONArray jsonArray = (JSONArray) jsonObject1.get("application_documents");
 				JSONObject jsonObject2 = new JSONObject();
 
@@ -305,46 +324,44 @@ public class IntfUtils {
 					for (int i = 0; i < jsonArray.length(); i++) {
 						jsonObject2 = (JSONObject) jsonArray.get(i);
 						if (jsonObject2.get("name").equals(paramVO.getFile_name())) {
-							caseDetails.setMedia_id((int) jsonObject2.get("media_id"));
+							param.setMedia_id((int) jsonObject2.get("media_id"));
 						}
 					}
 
 				} else {
-					paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string + " in getCaseDetails method");
-					dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
+					param.setErrorMsg(Constants.GENERICERRMESSAGE + request_string + " in getCaseDetails method");
+					param.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
 				}
 			}
 		} catch (Exception e) {
-			paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string + " in getCaseDetails method");
-			dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
-			System.out.println(e.getMessage());
+			param.setErrorMsg(Constants.GENERICERRMESSAGE + request_string + " in getCaseDetails method");
+			param.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
 		}
 
-		return caseDetails;
+		return param;
 	}
 
-	// Added by Kalmesh on 08/01/2021 for delete document
-	public String deleteFilesUploaded(int applicant_id, int media_id, ParamVO paramVO) {
-		String request_string = Constants.APICALLPART1 + HMAC_Encryption.tenant_id + "/applicants/" + applicant_id
+	public ParamVO deleteFilesUploaded(int applicant_id, int media_id, ParamVO paramVO) {
+		ParamVO param = null;
+		String request_string = Constants.APICALLPART1 + hmc_Encryption.getTenantId() + "/applicants/" + applicant_id
 				+ "/on_behalf_documents/" + media_id;
 		String requestVerb = Constants.REQ_DELETE;
-		String response = getAPIResponseForDelete(request_string, requestVerb, paramVO);
-		return response;
+		param = deleteAPICall(request_string, requestVerb, paramVO);
+		return param;
 	}
 
-	// Added by Kalmesh on 08/01/2021 for delete document
-	private String getAPIResponseForDelete(String reqMethod, String requestVerb, ParamVO paramVO) {
-		String full_request = HMAC_Encryption.host + reqMethod + "";
+	private ParamVO deleteAPICall(String reqMethod, String requestVerb, ParamVO paramVO) {
+		ParamVO param = new ParamVO();
+		String full_request = hmc_Encryption.getHost() + reqMethod + "";
 		HMAC_Encryption hmac = new HMAC_Encryption();
 		URL url;
 		HttpURLConnection conn = null;
-		String result = null;
 		try {
 			url = new URL(full_request);
 			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestProperty("Timestamp", hmac.timestampString());
+			conn.setRequestProperty("Timestamp", timestampString());
 			conn.setRequestProperty("Authorization", hmac.gen_HMAC(reqMethod, "", requestVerb));
-			conn.setRequestProperty("INTF-DatabaseID", HMAC_Encryption.tenant_id);
+			conn.setRequestProperty("INTF-DatabaseID", hmc_Encryption.getTenantId());
 			conn.setRequestMethod(requestVerb);
 			conn.setDoInput(true);
 			conn.setDoOutput(true);
@@ -353,11 +370,10 @@ public class IntfUtils {
 			conn.setRequestProperty("Content-Type", "application/json");
 
 			if (conn.getResponseCode() == 204) {
-				result = "Success";
+				param.setResult(true);
 			} else {
-				System.out.println(conn.getResponseCode());
+				param.setResult(false);
 				paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + reqMethod);
-				dao.updateErrorMsg(paramVO, Constants.FILE_UPLOAD_FAILED);
 				throw new IOException(conn.getResponseMessage());
 			}
 		} catch (IOException e) {
@@ -367,133 +383,156 @@ public class IntfUtils {
 				conn.disconnect();
 			}
 		}
-		return result;
+		return param;
 
 	}
 
-	public ParamVO checkFileInNetworkPath(ParamVO paramVO) throws IOException {
-		URL url = null;
-		InputStream inputStream = null;
-		URLConnection conn = null;
-		boolean success = false;
-		try {
-			url = new URL(paramVO.getNetworkPath() + paramVO.getFile_name());
-			conn = url.openConnection();
-			conn.setConnectTimeout(5 * 1000);
-			conn.setRequestProperty("UserVO-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-			inputStream = conn.getInputStream();
-			if (inputStream != null) {
-				paramVO.setResult(true);
-			}else {
-				paramVO.setResult(false);
-			}
-		} catch (IOException e) {
+	public ParamVO checkFileInNetworkPath(List<String> fileNames, ParamVO paramVO) throws IOException {
+		if (fileNames.contains(paramVO.getFile_name())) {
+			paramVO.setResult(true);
+		} else {
 			paramVO.setResult(false);
-		} finally {
-			if (conn != null) {
-				conn = null;
-			}
-			if (inputStream != null) {
-				inputStream.close();
-			}
 		}
 		return paramVO;
+
 	}
 
 	public ParamVO checkIfCaseExists(ParamVO paramVO) {
+		ParamVO param = null;
 		String requestVerb = Constants.REQ_GET;
-		String request_string = Constants.APICALLPART1 + HMAC_Encryption.tenant_id + "/packets"
+		String request_string = Constants.APICALLPART1 + hmc_Encryption.getTenantId() + "/packets"
 				+ Constants.APICALLWITHSEARCHTEXT
 				+ paramVO.getCandidate_first_name().replace(" ", Constants.REPLACE_WHITESPACE);
-		String full_request = HMAC_Encryption.host + request_string + "";
-		URL url;
-		HttpURLConnection conn = null;
-		try {
-			url = new URL(full_request);
-			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestProperty("Timestamp", hmc_Encryption.timestampString());
-			conn.setRequestProperty("Authorization", hmc_Encryption.gen_HMAC(request_string, "", requestVerb));
-			conn.setRequestProperty("INTF-DatabaseID", HMAC_Encryption.tenant_id);
-			conn.setRequestMethod(requestVerb);
-			conn.setDoInput(true);
-			conn.setDoOutput(true);
-			conn.setRequestProperty("User-Agent", "Java client");
-			conn.setRequestProperty("Accept", "application/json");
-			conn.setRequestProperty("Content-Type", "application/json");
-			System.out.println("Response Code : " + conn.getResponseCode());
-			System.out.println("Response Message : " + conn.getResponseMessage());
-			if (conn.getResponseCode() != 200) {
-				System.out.println(conn.getResponseCode());
-				paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string + conn.getResponseCode());
+		param = getAPIResponse(request_string, requestVerb);
+		String APIResult = param.getResponse();
+		JSONObject jsonObject = null;
+		JSONArray jsonArray = new JSONArray();
+		if (APIResult != null) {
+			jsonObject = new JSONObject(APIResult);
+			jsonArray = (JSONArray) jsonObject.get("results");
+			if (jsonArray.length() > 0) {
+				paramVO.setResult(true);
+				paramVO.setErrorMsg(null);
+			} else {
 				paramVO.setAuditFlag(Constants.FILE_UPLOAD_FAILED);
 				paramVO.setResult(false);
-				throw new IOException(conn.getResponseMessage());
-			} else {
-				paramVO.setErrorMsg(null);
-				paramVO.setResult(true);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				conn.disconnect();
+				paramVO.setErrorMsg(Constants.GENERICERRMESSAGE + request_string);
 			}
 		}
 		return paramVO;
 	}
 
-	public String createCase(ParamVO tmpVO) throws IOException {
-		String request_string = "/byc-tenure/" + HMAC_Encryption.tenant_id + "/packets/create_from_template";
+	public ParamVO createCase(ParamVO paramVO) throws IOException {
+		String request_string = "/byc-tenure/" + hmc_Encryption.getTenantId() + "/packets/create_from_template";
 		String query_string = "";
-		String request_verb = "POST";
-		HMAC_Encryption hmac = new HMAC_Encryption();
-		StringBuilder sb = null;
-		HttpURLConnection conn = hmac.getConnection(request_string, query_string, request_verb);
-		String result = "No records found to create a new case!!";
+		String request_verb = Constants.REQ_POST;
+		HttpURLConnection conn = hmc_Encryption.getConnection(request_string, query_string, request_verb);
 		try (OutputStream os = conn.getOutputStream()) {
-
 			Map<Object, Object> jsonValues = new HashMap<Object, Object>();
-			jsonValues.put("packet_id", tmpVO.getTemplate_id());
-			jsonValues.put("unit_id", PacketDetails.getUnitID(tmpVO.getTemplate_id()));
-			jsonValues.put("candidate_first_name", tmpVO.getCandidate_first_name());
-			jsonValues.put("candidate_last_name", tmpVO.getCandidate_last_name());
-			jsonValues.put("candidate_email", tmpVO.getCandidate_email()); //
-			jsonValues.put("due_date", tmpVO.getDue_at());
+			jsonValues.put("packet_id", paramVO.getTemplate_id());
+			jsonValues.put("unit_id", PacketDetails.getUnitID(paramVO.getTemplate_id()));
+			jsonValues.put("candidate_first_name", paramVO.getCandidate_first_name());
+			jsonValues.put("candidate_last_name", paramVO.getCandidate_last_name());
+			jsonValues.put("candidate_email", paramVO.getCandidate_email()); //
+			jsonValues.put("due_date", paramVO.getDue_at());
 			JSONObject parameters = new JSONObject(jsonValues);
 			JSONObject payload = new JSONObject();
 			payload.put("packet", parameters);
-			System.out.println(payload);
 			os.write(payload.toString().getBytes());
 			os.close();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+			paramVO.setResult(false);
+			paramVO.setErrorMsg("Case creation failed");
 		}
-		System.out.println(conn.getResponseCode());
 		if (conn.getResponseCode() == 201) {
-			System.out.println(conn.getResponseCode());
-			dao.updateCaseCreateAuditFlag(tmpVO, Constants.CASE_CREATE_SUCCESS);
+			paramVO.setResult(true);
+			paramVO.setErrorMsg("Success");
+		} else {
+			paramVO.setResult(false);
+			paramVO.setErrorMsg("Case creation failed");
 		}
+		return paramVO;
+	}
 
+	public List<String> getFilesFromNetworkPath() throws IOException {
+		String NETWORKPATH = "\\\\Ccsoq3\\soqfiles$";
+		String NETWORKPATH_GRADED = "\\\\erpbiprd3\\c$\\BurstDestFolder";
+		File file = new File(NETWORKPATH);
+		File file1 = new File(NETWORKPATH_GRADED);
+		String[] fileList1 = file.list();
+		String[] fileList2 = file1.list();
+		String[] fileList = ObjectArrays.concat(fileList1, fileList2, String.class);
+		List<String> fileNames = Arrays.asList(fileList);
+		return fileNames;
+	}
+
+	public File decodeToFile(String inputString) {
+		byte[] fileByte = null;
+		File filePath = null;
 		try {
-			// Buffer the result into a string
-			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			sb = new StringBuilder();
+			fileByte = Base64.getDecoder().decode(inputString);
+			String path = Constants.LOCALFILEPATH + "InputData" + ".xlsx";
+			filePath = new File(path);
+			OutputStream os = new FileOutputStream(filePath);
+			FileCopyUtils.copy(fileByte, os);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filePath;
+	}
 
-			while ((rd.readLine()) != null) {
-				sb.append(rd.readLine());
+	@SuppressWarnings("resource")
+	public List<InputSourceVO> farseInputFile(File file) {
+		List<InputSourceVO> inputSourceList = new ArrayList<InputSourceVO>();
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			Workbook workbook = new XSSFWorkbook(fis);
+			Sheet firstSheet = workbook.getSheetAt(0);
+			Iterator<Row> iterator = firstSheet.iterator();
+			InputSourceVO inputSource = null;
+			while (iterator.hasNext()) {
+				Row nextRow = iterator.next();
+				if (nextRow.getRowNum() != 0) {
+					Iterator<Cell> cellIterator = nextRow.cellIterator();
+					inputSource = new InputSourceVO();
+					inputSource.setCreate_date(getSysdate());
+					while (cellIterator.hasNext()) {
+						Cell nextCell = cellIterator.next();
+						if (nextCell.getColumnIndex() == 0) {
+							if (nextCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+								double d = nextCell.getNumericCellValue();
+								int value = (int) d;
+								inputSource.setCwid(String.valueOf(value));
+							} else {
+								inputSource.setCwid(nextCell.getStringCellValue());
+							}
+						} else if (nextCell.getColumnIndex() == 1) {
+							if (nextCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+								double d = nextCell.getNumericCellValue();
+								int value = (int) d;
+								inputSource.setTemplate_id(String.valueOf(value));
+							} else {
+								inputSource.setTemplate_id(nextCell.getStringCellValue());
+							}
+						} else if (nextCell.getColumnIndex() == 2) {
+							inputSource.setReview_term(nextCell.getStringCellValue());
+						} else if (nextCell.getColumnIndex() == 3) {
+							double d = nextCell.getNumericCellValue();
+							inputSource.setTenure((int) d);
+						}
+					}
+					inputSourceList.add(inputSource);
+				}
 			}
-			rd.close();
-
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		conn.disconnect();
-
-		if (sb != null) {
-			result = sb.toString();
+		finally {
+			if (file.exists()) {
+				file.delete();
+			}
 		}
-		return result;
+		return inputSourceList;
 	}
 }

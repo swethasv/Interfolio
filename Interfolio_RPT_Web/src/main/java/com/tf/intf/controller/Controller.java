@@ -7,10 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tf.intf.model.ParamVO;
 import com.tf.intf.services.UserServices;
 
 @RestController
@@ -22,15 +24,13 @@ public class Controller {
 	@Autowired
 	UserServices userServices;
 	
-	@GetMapping(path = "/createCase/{template_id}", produces = "application/json")
-	public String createCase(@PathVariable String template_id) throws IOException {
-		return userServices.createCase(template_id);
-		
+	@PostMapping("/createCase")
+	public String createCase(@RequestBody ParamVO param) {
+		return userServices.createCase(param);
 	}
 	
-	@GetMapping(path = "/getTemplateId", produces = "application/json")
+	@GetMapping(path = "/getTemplate", produces = "application/json")
 	public Map<Object, Object> getTemplateId() {
-		
 		return userServices.getTemplateId();
 	}
 	
@@ -58,7 +58,12 @@ public class Controller {
 	}
 	
 	@GetMapping(path = "/caseAndFileValidation", produces = "application/json")
-	public String caseAndFileValidation() throws IOException {
+	public String caseAndFileValidation(){
 		return userServices.caseAndFileValidation();
+	}
+	
+	@PostMapping("/uploadCSVFIle")
+	public String uploadCSVFIle(@RequestBody ParamVO param) throws IOException {
+		return userServices.uploadCSVFIle(param);
 	}
 }

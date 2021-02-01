@@ -1,11 +1,12 @@
 package com.tf.intf.services;
 
-import java.io.IOException;
 import java.util.Map;
+
+import com.tf.intf.model.ParamVO;
 
 public interface UserServices {
 
-	String createCase(String template_id) throws IOException;
+	String createCase(ParamVO param);
 
 	Map<Object, Object> getTemplateId();
 
@@ -18,5 +19,7 @@ public interface UserServices {
 	String deleteUploadedFile();
 
 	String caseAndFileValidation();
+
+	String uploadCSVFIle(ParamVO param);
 
 }

@@ -47,5 +47,4 @@ public class Constants {
 	
 	public static String GENERICERRMESSAGE = "Error encounterd in API call ";
 	
-	public static String DATA_LIMIT = "100";
 }

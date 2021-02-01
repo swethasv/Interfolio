@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.tf.intf.DAO.DAO;
+import com.tf.intf.model.InputSourceVO;
 import com.tf.intf.model.ParamVO;
 import com.tf.intf.model.TemplateVO;
 import com.tf.intf.util.IntfUtils;
@@ -32,17 +33,21 @@ public class DAOImpl implements DAO {
 	private final String GET_SOQ_DATA = "select * from " + INTERFOLIO_FILE_TABLE_NAME + " WHERE FILE_UPLOAD_FLAG = ?";
 	private final String GET_SOQ_DATA_TO_FILE_UPLOAD = "select * from " + INTERFOLIO_FILE_TABLE_NAME
 			+ " WHERE FILE_UPLOAD_FLAG = ? AND FILE_TYPE = ?";
-	private final String GET_CASE_CREATE_DATA = "select * from " + INTERFOLIO_STG_TABLE_NAME + " where CREATED_FLG = ?";
+	private final String GET_CASE_CREATE_DATA = "select * from " + INTERFOLIO_STG_TABLE_NAME
+			+ " where TEMPLATE_ID=? AND CREATED_FLG = ?";
 	private final String UPDATE_SOQ_AUDIT_FLAG = "update " + INTERFOLIO_FILE_TABLE_NAME
 			+ " set FILE_UPLOAD_FLAG=?, PROCESS_DATE =? where FILE_NAME=? AND TEMPLATE_ID = ?";
-	private final String GET_TEMPLATE_ID = "select distinct TEMPLATE_ID from " + INTERFOLIO_FILE_TABLE_NAME;
+	private final String GET_TEMPLATE = "select TEMPLATE_ID, CAND_NAME, CREATED_FLG from " + INTERFOLIO_STG_TABLE_NAME;
 	private final String UPDATE_ERROR_MSG = "update " + INTERFOLIO_FILE_TABLE_NAME
 			+ " set FILE_UPLOAD_FLAG=?,errorMsg=?, PROCESS_DATE =? where FILE_NAME=? AND TEMPLATE_ID=?";
 	private final String UPDATE_CASE_CREATE_AUDIT_FLAG = "update " + INTERFOLIO_STG_TABLE_NAME
-			+ " set created_flg= ?, where cwid = ? and TEMPLATE_ID = ?";
+			+ " set created_flg= ? where cwid = ? and TEMPLATE_ID = ?";
 	private final String UPDATE_SOQ_AUDIT_FLAG_BATCH = "update " + INTERFOLIO_FILE_TABLE_NAME
 			+ " set FILE_UPLOAD_FLAG=?, ERRORMSG=?, PROCESS_DATE =? where FILE_NAME=? AND TEMPLATE_ID = ?";
-
+	private final String CREATE_NEW_RECORDS = "insert into WC_TEST_SOURCE_INPUT (CWID, TEMPLATE_ID, REVIEW_TERM, TENURE, CREATE_DATE) values(?, ?, ?, ?, ?)";
+	private final String DELETE_RECORDS = "DELETE from WC_TEST_SOURCE_INPUT";
+	
+	
 	public List<ParamVO> getSOQFilesFromDataBase(String fILE_TO_UPLOAD) {
 		List<ParamVO> result = new ArrayList<ParamVO>();
 		try {
@@ -80,11 +85,11 @@ public class DAOImpl implements DAO {
 	}
 
 	@Override
-	public List<ParamVO> getCaseCreateData(String fILE_TO_UPLOAD) {
+	public List<ParamVO> getCaseCreateData(String template_id, String fILE_TO_UPLOAD) {
 		List<ParamVO> result = new ArrayList<ParamVO>();
 		try {
 			List<Map<String, Object>> rows = jdbcTemplate.queryForList(GET_CASE_CREATE_DATA,
-					new Object[] { fILE_TO_UPLOAD });
+					new Object[] { template_id, fILE_TO_UPLOAD });
 			for (Map<String, Object> row : rows) {
 				ParamVO param = new ParamVO();
 				param.setCandidate_first_name((String) row.get("CAND_FIRST_NM"));
@@ -115,10 +120,12 @@ public class DAOImpl implements DAO {
 	public List<TemplateVO> getTemplateId() {
 		List<TemplateVO> result = new ArrayList<TemplateVO>();
 		try {
-			List<Map<String, Object>> rows = jdbcTemplate.queryForList(GET_TEMPLATE_ID);
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(GET_TEMPLATE);
 			for (Map<String, Object> row : rows) {
 				TemplateVO template = new TemplateVO();
 				template.setTemplateId((String) row.get("TEMPLATE_ID"));
+				template.setCand_name((String) row.get("CAND_NAME"));
+				template.setStatus((String) row.get("CREATED_FLG"));
 				result.add(template);
 			}
 		} catch (DataAccessException e) {
@@ -149,19 +156,41 @@ public class DAOImpl implements DAO {
 	}
 
 	public int[] batchUpdateSOQAuditFlag(List<ParamVO> param) {
-		return this.jdbcTemplate.batchUpdate(UPDATE_SOQ_AUDIT_FLAG_BATCH,
-				new BatchPreparedStatementSetter() {
-					public void setValues(PreparedStatement ps, int i) throws SQLException {
-						ps.setString(1, param.get(i).getAuditFlag());
-						ps.setString(2, param.get(i).getErrorMsg());
-						ps.setDate(3, param.get(i).getProcessDate());
-						ps.setString(4, param.get(i).getFile_name());
-						ps.setString(5, param.get(i).getTemplate_id());
-					}
-					public int getBatchSize() {
-						return param.size();
-					}
+		return this.jdbcTemplate.batchUpdate(UPDATE_SOQ_AUDIT_FLAG_BATCH, new BatchPreparedStatementSetter() {
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				ps.setString(1, param.get(i).getAuditFlag());
+				ps.setString(2, param.get(i).getErrorMsg());
+				ps.setDate(3, param.get(i).getProcessDate());
+				ps.setString(4, param.get(i).getFile_name());
+				ps.setString(5, param.get(i).getTemplate_id());
+			}
 
-				});
+			public int getBatchSize() {
+				return param.size();
+			}
+		});
+	}
+
+	public int[] createDataFromInputSource(List<InputSourceVO> listInputSourceVO) {
+		return this.jdbcTemplate.batchUpdate(CREATE_NEW_RECORDS, new BatchPreparedStatementSetter() {
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				ps.setString(1, listInputSourceVO.get(i).getCwid());
+				ps.setString(2, listInputSourceVO.get(i).getTemplate_id());
+				ps.setString(3, listInputSourceVO.get(i).getReview_term());
+				ps.setInt(4, listInputSourceVO.get(i).getTenure());
+				ps.setDate(5, listInputSourceVO.get(i).getCreate_date());
+			}
+
+			public int getBatchSize() {
+				return listInputSourceVO.size();
+			}
+
+		});
+	}
+
+	@Override
+	public int deleteRecords() {
+		int rowsDeleted = jdbcTemplate.update(DELETE_RECORDS);
+		return rowsDeleted;
 	}
 }
