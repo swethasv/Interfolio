@@ -1,0 +1,44 @@
+.header {
+  padding: 25px;
+  text-align: center;
+  background-image: url("csuf-logo1.png");
+  background-color:#00274C;
+  background-repeat: no-repeat;
+  background-size: 250px 80px;
+  color: white;
+  font-size: 30px;
+}
+
+.footer {
+  padding: 10px;
+  text-align: center;
+  background-color:#00274C;
+  background-repeat: no-repeat;
+  background-size: 250px 80px;
+  color: white;
+  font-size: 10px;
+}
+.tab-content{
+	height:  505px;
+}
+table {
+  width:100%;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+#t01 tr:nth-child(odd) {
+ background-color: #fff;
+}
+#t01 th {
+  background-color: black;
+  color: white;
+}
