@@ -27,27 +27,27 @@ public class DAOImpl implements DAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	private String INTERFOLIO_STG_TABLE_NAME = "WC_INTER_STG_1210";
-	private String INTERFOLIO_FILE_TABLE_NAME = "WC_INTER_INSTR_DATA_1227";
+	private String INTERFOLIO_CASE_DATA_TABLE_NAME = "WC_INTER_CASE_DATA";
+	private String INTERFOLIO_FILE_TABLE_NAME = "WC_INTER_INSTR_DATA";
+	private String INTERFOLIO_INPUT_DATA_TABLE_NAME = "WC_INTER_INPUT_DATA";
 
 	private final String GET_SOQ_DATA = "select * from " + INTERFOLIO_FILE_TABLE_NAME + " WHERE FILE_UPLOAD_FLAG = ?";
 	private final String GET_SOQ_DATA_TO_FILE_UPLOAD = "select * from " + INTERFOLIO_FILE_TABLE_NAME
 			+ " WHERE FILE_UPLOAD_FLAG = ? AND FILE_TYPE = ?";
-	private final String GET_CASE_CREATE_DATA = "select * from " + INTERFOLIO_STG_TABLE_NAME
-			+ " where TEMPLATE_ID=? AND CREATED_FLG = ?";
+	private final String GET_CASE_CREATE_DATA = "select * from " + INTERFOLIO_CASE_DATA_TABLE_NAME
+			+ " where CREATED_FLG = ?";
 	private final String UPDATE_SOQ_AUDIT_FLAG = "update " + INTERFOLIO_FILE_TABLE_NAME
 			+ " set FILE_UPLOAD_FLAG=?, PROCESS_DATE =? where FILE_NAME=? AND TEMPLATE_ID = ?";
-	private final String GET_TEMPLATE = "select TEMPLATE_ID, CAND_NAME, CREATED_FLG from " + INTERFOLIO_STG_TABLE_NAME;
+	private final String GET_TEMPLATE = "select TEMPLATE_ID, CAND_NAME, CREATED_FLG from " + INTERFOLIO_CASE_DATA_TABLE_NAME;
 	private final String UPDATE_ERROR_MSG = "update " + INTERFOLIO_FILE_TABLE_NAME
 			+ " set FILE_UPLOAD_FLAG=?,errorMsg=?, PROCESS_DATE =? where FILE_NAME=? AND TEMPLATE_ID=?";
-	private final String UPDATE_CASE_CREATE_AUDIT_FLAG = "update " + INTERFOLIO_STG_TABLE_NAME
+	private final String UPDATE_CASE_CREATE_AUDIT_FLAG = "update " + INTERFOLIO_CASE_DATA_TABLE_NAME
 			+ " set created_flg= ? where cwid = ? and TEMPLATE_ID = ?";
 	private final String UPDATE_SOQ_AUDIT_FLAG_BATCH = "update " + INTERFOLIO_FILE_TABLE_NAME
 			+ " set FILE_UPLOAD_FLAG=?, ERRORMSG=?, PROCESS_DATE =? where FILE_NAME=? AND TEMPLATE_ID = ?";
-	private final String CREATE_NEW_RECORDS = "insert into WC_TEST_SOURCE_INPUT (CWID, TEMPLATE_ID, REVIEW_TERM, TENURE, CREATE_DATE) values(?, ?, ?, ?, ?)";
-	private final String DELETE_RECORDS = "DELETE from WC_TEST_SOURCE_INPUT";
-	
-	
+	private final String CREATE_NEW_RECORDS = "insert into" +INTERFOLIO_INPUT_DATA_TABLE_NAME+ "(CWID, TEMPLATE_ID, REVIEW_TERM, TENURE, CREATE_DATE) values(?, ?, ?, ?, ?)";
+	private final String DELETE_RECORDS = "truncate table" +INTERFOLIO_INPUT_DATA_TABLE_NAME;
+
 	public List<ParamVO> getSOQFilesFromDataBase(String fILE_TO_UPLOAD) {
 		List<ParamVO> result = new ArrayList<ParamVO>();
 		try {
@@ -85,11 +85,11 @@ public class DAOImpl implements DAO {
 	}
 
 	@Override
-	public List<ParamVO> getCaseCreateData(String template_id, String fILE_TO_UPLOAD) {
+	public List<ParamVO> getCaseCreateData(String fILE_TO_UPLOAD) {
 		List<ParamVO> result = new ArrayList<ParamVO>();
 		try {
 			List<Map<String, Object>> rows = jdbcTemplate.queryForList(GET_CASE_CREATE_DATA,
-					new Object[] { template_id, fILE_TO_UPLOAD });
+					new Object[] { fILE_TO_UPLOAD });
 			for (Map<String, Object> row : rows) {
 				ParamVO param = new ParamVO();
 				param.setCandidate_first_name((String) row.get("CAND_FIRST_NM"));
@@ -123,9 +123,16 @@ public class DAOImpl implements DAO {
 			List<Map<String, Object>> rows = jdbcTemplate.queryForList(GET_TEMPLATE);
 			for (Map<String, Object> row : rows) {
 				TemplateVO template = new TemplateVO();
-				template.setTemplateId((String) row.get("TEMPLATE_ID"));
+				template.setTemplate_id((String) row.get("TEMPLATE_ID"));
 				template.setCand_name((String) row.get("CAND_NAME"));
-				template.setStatus((String) row.get("CREATED_FLG"));
+				String flag = (String) row.get("CREATED_FLG");
+				if (flag.equals("Y")) {
+					template.setStatus("Created");
+				} else if (flag.equals("N")) {
+					template.setStatus("New Record");
+				} else if (flag.equals("F")) {
+					template.setStatus("Failed");
+				}
 				result.add(template);
 			}
 		} catch (DataAccessException e) {
@@ -178,7 +185,7 @@ public class DAOImpl implements DAO {
 				ps.setString(2, listInputSourceVO.get(i).getTemplate_id());
 				ps.setString(3, listInputSourceVO.get(i).getReview_term());
 				ps.setInt(4, listInputSourceVO.get(i).getTenure());
-				ps.setDate(5, listInputSourceVO.get(i).getCreate_date());
+				ps.setDate(5, new java.sql.Date(new java.util.Date().getTime()));
 			}
 
 			public int getBatchSize() {
@@ -188,9 +195,10 @@ public class DAOImpl implements DAO {
 		});
 	}
 
-	@Override
-	public int deleteRecords() {
-		int rowsDeleted = jdbcTemplate.update(DELETE_RECORDS);
+	public int deleteRecords() throws SQLException {
+		int rowsDeleted = 0;
+		rowsDeleted = jdbcTemplate.update(DELETE_RECORDS);
+
 		return rowsDeleted;
 	}
 }

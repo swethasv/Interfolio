@@ -1,5 +1,6 @@
 package com.tf.intf.DAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.tf.intf.model.InputSourceVO;
@@ -12,7 +13,7 @@ public interface DAO {
 
 	List<ParamVO> getSOQFileDetails(String fILE_TO_UPLOAD, String sOQ_STAT_FILE_TYPE);
 
-	List<ParamVO> getCaseCreateData(String template_id, String fILE_TO_UPLOAD);
+	List<ParamVO> getCaseCreateData(String fILE_TO_UPLOAD);
 
 	void updateSOQAuditFlg(ParamVO paramVO, String fILE_IN_RUNNING_STATE);
 
@@ -26,6 +27,6 @@ public interface DAO {
 
 	public int[] createDataFromInputSource(List<InputSourceVO> listInputSourceVO);
 
-	public int deleteRecords();
+	public int deleteRecords() throws SQLException;
 
 }

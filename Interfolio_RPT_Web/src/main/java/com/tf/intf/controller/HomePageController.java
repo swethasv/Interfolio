@@ -7,6 +7,6 @@ public class HomePageController {
 
 	@GetMapping(value = "/")
 	public String homePage() {
-		return "createCase";
+		return "header";
 	}
 }

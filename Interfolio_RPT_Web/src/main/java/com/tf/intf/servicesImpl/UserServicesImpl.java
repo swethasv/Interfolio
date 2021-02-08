@@ -1,6 +1,7 @@
 package com.tf.intf.servicesImpl;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,13 +44,13 @@ public class UserServicesImpl implements UserServices {
 	DAO dao;
 
 	@Override
-	public String createCase(ParamVO param) {
+	public String createCase() {
 		long startTime = new Date().getTime();
 		LOGGER.info("Create case process started.");
 		String result = null;
 		ParamVO paramVO = null;
 		int paramListSize = 0;
-		List<ParamVO> paramList = dao.getCaseCreateData(param.getTemplate_id(), Constants.FILE_TO_UPLOAD);
+		List<ParamVO> paramList = dao.getCaseCreateData(Constants.FILE_TO_UPLOAD);
 		if (paramList != null && paramList.size() != 0) {
 			paramListSize = paramList.size();
 			for (ParamVO tmpVO : paramList) {
@@ -61,11 +62,12 @@ public class UserServicesImpl implements UserServices {
 					} else {
 						result = paramVO.getErrorMsg();
 					}
-
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
+		}else {
+			result = "No records to process";
 		}
 		LOGGER.info("Create case process completed.");
 		long endTime = new Date().getTime();
@@ -78,11 +80,11 @@ public class UserServicesImpl implements UserServices {
 		return result;
 	}
 
-	public Map<Object, Object> getTemplateId() {
-		Map<Object, Object> map = new HashMap<Object, Object>();
+	public List<TemplateVO> getTemplateId() {
+		//Map<Object, Object> map = new HashMap<Object, Object>();
 		List<TemplateVO> templateVO = dao.getTemplateId();
-		map.put("Template", templateVO);
-		return map;
+		//map.put("Template", templateVO);
+		return templateVO;
 	}
 
 	public String uploadGradedClassReport() {
@@ -506,7 +508,7 @@ public class UserServicesImpl implements UserServices {
 	}
 
 	@Override
-	public String uploadCSVFIle(ParamVO param) {
+	public String uploadCSVFile(ParamVO param) {
 		String response = null;
 		String inputString = param.getFile_data();
 		File file = null;
@@ -514,14 +516,16 @@ public class UserServicesImpl implements UserServices {
 		if (inputString != null) {
 			file = intfUtils.decodeToFile(inputString);
 			if (file.getName() != null) {
-				listInputSourceVO = intfUtils.farseInputFile(file);
+				listInputSourceVO = intfUtils.parseInputFile(file);
 				if (listInputSourceVO != null && listInputSourceVO.size() != 0) {
-					int rowsDeleted = dao.deleteRecords();
-					if (rowsDeleted > 0) {
-						dao.createDataFromInputSource(listInputSourceVO);
-						response = "Success";
+					try {
+						dao.deleteRecords();
+					} catch (SQLException e) {
+						e.printStackTrace();
 					}
-					
+					dao.createDataFromInputSource(listInputSourceVO);
+					response = "Success";
+
 				} else {
 					response = "Fail";
 				}

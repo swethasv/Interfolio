@@ -23,12 +23,12 @@ public class PacketDetails {
 	private String product = "byc"; // Value should be either 'faculty180', or 'byc' (if you are using FS or RPT)
 	private String request_verb = "GET";
 
-	private String getRequestString() {
-		return "/byc-tenure/" + hmc_Encryption.getTenantId() + "/packet_templates/";
+	private String getRequestString(String tenant_id) {
+		return "/byc-tenure/" + tenant_id + "/packet_templates/";
 	}
 
-	private String gen_HMAC(String query_string) {
-		String HMAC_request_string = getRequestString();
+	private String gen_HMAC(String query_string, String tenant_id) {
+		String HMAC_request_string = getRequestString(tenant_id);
 		if (product == HMAC_Encryption.product) {
 			HMAC_request_string = HMAC_request_string + query_string;
 		}
@@ -50,15 +50,14 @@ public class PacketDetails {
 		}
 	}
 
-	private String getResults(String query_string) throws IOException {
-		HMAC_Encryption hmac = new HMAC_Encryption();
-		String full_request = hmc_Encryption.getHost() + getRequestString() + query_string;
+	private String getResults(String query_string, String host, String tenant_id) throws IOException {
+		String full_request = host + getRequestString(tenant_id) + query_string;
 
 		URL url = new URL(full_request);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestProperty("Timestamp", intfUtils.timestampString());
-		conn.setRequestProperty("Authorization", gen_HMAC(query_string));
-		conn.setRequestProperty("INTF-DatabaseID", hmc_Encryption.getTenantId());
+		conn.setRequestProperty("Authorization", gen_HMAC(query_string, tenant_id));
+		conn.setRequestProperty("INTF-DatabaseID", tenant_id);
 
 		if (conn.getResponseCode() != 200) {
 			throw new IOException(conn.getResponseMessage());
@@ -77,13 +76,14 @@ public class PacketDetails {
 		return sb.toString();
 	}
 
-	public static int getPacketID(String query_string) {
+	public int getPacketID(String query_string) {
 		int packet_id = 0;
-
+        String host = hmc_Encryption.getHost();
+        String tenant_id = hmc_Encryption.getTenantId();
 		PacketDetails token = new PacketDetails();
 		JSONObject jsonObject;
 		try {
-			jsonObject = new JSONObject(token.getResults(query_string));
+			jsonObject = new JSONObject(token.getResults(query_string, host, tenant_id));
 			JSONArray jsonArray = (JSONArray) jsonObject.get("results");
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
@@ -101,13 +101,13 @@ public class PacketDetails {
 		return packet_id;
 	}
 
-	public static int getUnitID(String query_string) {
+	public int getUnitID(String query_string, String host, String tenant_id) {
 
 		int unit_id = 0;
 		PacketDetails token = new PacketDetails();
 		JSONObject jsonObject;
 		try {
-			jsonObject = new JSONObject(token.getResults(query_string));
+			jsonObject = new JSONObject(token.getResults(query_string, host, tenant_id));
 			// jsonObject = (JSONObject) jsonObject.get("packet_template");
 			JSONObject jsonObject1 = (JSONObject) jsonObject.get("packet_template");
 			unit_id = (int) jsonObject1.get("unit_id");
@@ -133,7 +133,7 @@ public class PacketDetails {
 	public static void main(String[] args) {
 		// String query_string = "?search_text=College%20of%20Humanities";
 
-		System.out.println(getUnitID("176648"));
+		//System.out.println(getUnitID("176648"));
 
 	}
 

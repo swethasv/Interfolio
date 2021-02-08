@@ -27,7 +27,7 @@ public class HMAC_Encryption {
 	}
 	
 	public String getHost() {
-		return environment.getProperty("host");
+		return environment.getProperty("host_details");
 	}
 	
 	public String getPublicKey() {

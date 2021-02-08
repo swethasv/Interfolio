@@ -12,7 +12,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,13 +23,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -45,6 +47,8 @@ public class IntfUtils {
 
 	@Autowired
 	HMAC_Encryption hmc_Encryption;
+	
+	private String product = "byc";
 
 	public String timestampString() {
 		SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -430,7 +434,7 @@ public class IntfUtils {
 		try (OutputStream os = conn.getOutputStream()) {
 			Map<Object, Object> jsonValues = new HashMap<Object, Object>();
 			jsonValues.put("packet_id", paramVO.getTemplate_id());
-			jsonValues.put("unit_id", PacketDetails.getUnitID(paramVO.getTemplate_id()));
+			jsonValues.put("unit_id", getUnitID(paramVO.getTemplate_id()));
 			jsonValues.put("candidate_first_name", paramVO.getCandidate_first_name());
 			jsonValues.put("candidate_last_name", paramVO.getCandidate_last_name());
 			jsonValues.put("candidate_email", paramVO.getCandidate_email()); //
@@ -483,7 +487,7 @@ public class IntfUtils {
 	}
 
 	@SuppressWarnings("resource")
-	public List<InputSourceVO> farseInputFile(File file) {
+	public List<InputSourceVO> parseInputFile(File file) {
 		List<InputSourceVO> inputSourceList = new ArrayList<InputSourceVO>();
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -496,7 +500,6 @@ public class IntfUtils {
 				if (nextRow.getRowNum() != 0) {
 					Iterator<Cell> cellIterator = nextRow.cellIterator();
 					inputSource = new InputSourceVO();
-					inputSource.setCreate_date(getSysdate());
 					while (cellIterator.hasNext()) {
 						Cell nextCell = cellIterator.next();
 						if (nextCell.getColumnIndex() == 0) {
@@ -534,5 +537,70 @@ public class IntfUtils {
 			}
 		}
 		return inputSourceList;
+	}
+	
+	public int getUnitID(String query_string) {
+		int unit_id = 0;
+		JSONObject jsonObject;
+		try {
+			jsonObject = new JSONObject(getResults(query_string));
+			JSONObject jsonObject1 = (JSONObject) jsonObject.get("packet_template");
+			unit_id = (int) jsonObject1.get("unit_id");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return unit_id;
+	}
+	
+	private String getResults(String query_string) throws IOException {
+		String host = hmc_Encryption.getHost();
+		String tenant_id = hmc_Encryption.getTenantId();
+		String requestString = "/byc-tenure/" + tenant_id + "/packet_templates/";
+		String full_request = host + requestString + query_string;
+		
+		URL url = new URL(full_request);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestProperty("Timestamp", timestampString());
+		conn.setRequestProperty("Authorization", gen_HMAC(query_string, tenant_id));
+		conn.setRequestProperty("INTF-DatabaseID", tenant_id);
+
+		if (conn.getResponseCode() != 200) {
+			throw new IOException(conn.getResponseMessage());
+		}
+		BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line);
+		}
+		rd.close();
+
+		conn.disconnect();
+		return sb.toString();
+	}
+	
+	private String gen_HMAC(String query_string, String tenant_id) {
+		String HMAC_request_string = "/byc-tenure/" + tenant_id + "/packet_templates/";
+		if (product == HMAC_Encryption.product) {
+			HMAC_request_string = HMAC_request_string + query_string;
+		}
+
+		String verbReq = Constants.REQ_GET + "\n\n\n" + timestampString() + "\n" + HMAC_request_string;
+		try {
+			Mac sha1_HMAC = Mac.getInstance("HmacSHA1");
+			SecretKeySpec secret_key = new SecretKeySpec(hmc_Encryption.getPrivateKey().getBytes(), "HmacSHA1");
+			sha1_HMAC.init(secret_key);
+			String output_hash = org.apache.commons.codec.binary.Base64
+					.encodeBase64String(sha1_HMAC.doFinal(verbReq.getBytes()));
+
+			String authorization_header = "INTF " + hmc_Encryption.getPublicKey() + output_hash;
+
+			return authorization_header;
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+			return null;
+		}
 	}
 }

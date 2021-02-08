@@ -2,18 +2,17 @@ package com.tf.intf.model;
 
 public class TemplateVO {
 
-	private String templateId;
+	private String template_id;
 	private String cand_name;
 	private String status;
 
-	public String getTemplateId() {
-		return templateId;
+	public String getTemplate_id() {
+		return template_id;
 	}
 
-	public void setTemplateId(String templateId) {
-		this.templateId = templateId;
+	public void setTemplate_id(String template_id) {
+		this.template_id = template_id;
 	}
-
 	public String getCand_name() {
 		return cand_name;
 	}
@@ -29,4 +28,5 @@ public class TemplateVO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 }

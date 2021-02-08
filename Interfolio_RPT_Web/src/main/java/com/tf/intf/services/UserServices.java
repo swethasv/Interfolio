@@ -1,14 +1,16 @@
 package com.tf.intf.services;
 
+import java.util.List;
 import java.util.Map;
 
 import com.tf.intf.model.ParamVO;
+import com.tf.intf.model.TemplateVO;
 
 public interface UserServices {
 
-	String createCase(ParamVO param);
+	String createCase();
 
-	Map<Object, Object> getTemplateId();
+	List<TemplateVO> getTemplateId();
 
 	String uploadGradedClassReport();
 
@@ -20,6 +22,7 @@ public interface UserServices {
 
 	String caseAndFileValidation();
 
-	String uploadCSVFIle(ParamVO param);
+
+	String uploadCSVFile(ParamVO param);
 
 }

@@ -1,6 +1,5 @@
 package com.tf.intf.model;
 
-import java.io.File;
 import java.util.Date;
 
 public class ParamVO {
@@ -28,6 +27,8 @@ public class ParamVO {
 	private int media_id;
 	private String response;
 	private String file_data;
+	private String cand_name;
+	private String status;
 	/**
 	 * @return the networkPath
 	 */
@@ -232,5 +233,17 @@ public class ParamVO {
 	}
 	public void setFile_data(String file_data) {
 		this.file_data = file_data;
+	}
+	public String getCand_name() {
+		return cand_name;
+	}
+	public void setCand_name(String cand_name) {
+		this.cand_name = cand_name;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
