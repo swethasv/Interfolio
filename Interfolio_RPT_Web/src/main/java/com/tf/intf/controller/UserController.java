@@ -1,18 +1,16 @@
 package com.tf.intf.controller;
 
-import java.io.IOException;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tf.intf.model.TemplateVO;
 import com.tf.intf.services.UserServices;
+import com.tf.intf.util.Constants;
 
 @Controller
 public class UserController {
@@ -29,32 +27,31 @@ public class UserController {
 		return "createCase";
 	}
 
-	@GetMapping(path = "/uploadGradedClassReport", produces = "application/json")
-	public String uploadGradedClassReport() throws IOException {
-		return userServices.uploadGradedClassReport();
-
+	@RequestMapping(path = "/getPreProcessData")
+	public String getAllSOQFileDetails(Model model) {
+		List<TemplateVO> soqDataList = userServices.getAllSOQFileDetails();
+		model.addAttribute("soqData", soqDataList);
+		return "validateData";
 	}
-
-	@GetMapping(path = "/uploadSOQCommentsFile", produces = "application/json")
-	public String uploadSOQCommentsFile() throws IOException {
-		return userServices.uploadSOQCommentsFile();
-
+	
+	@RequestMapping(path = "/geSOQStatData")
+	public String getAllSOQStatFileDetails(Model model) {
+		List<TemplateVO> soqDataList = userServices.getSOQFileDetails(Constants.SOQ_STAT_FILE_TYPE);
+		model.addAttribute("soqData", soqDataList);
+		return "soqStatsFile";
 	}
-
-	@GetMapping(path = "/uploadSOQStatsFile", produces = "application/json")
-	public String uploadSOQStatsFile() throws IOException {
-		return userServices.uploadSOQStatsFile();
-
+	
+	@RequestMapping(path = "/geSOQCommentData")
+	public String getAllSOQCommentFileDetails(Model model) {
+		List<TemplateVO> soqDataList = userServices.getSOQFileDetails(Constants.SOQ_COMM_FILE_TYPE);
+		model.addAttribute("soqData", soqDataList);
+		return "soqCommFile";
 	}
-
-	@GetMapping(path = "/deleteUploadedFile", produces = "application/json")
-	public String deleteUploadedFile() throws IOException {
-		return userServices.deleteUploadedFile();
+	
+	@RequestMapping(path = "/geSOQGradedClassData")
+	public String getAllSOQGradedFileDetails(Model model) {
+		List<TemplateVO> soqDataList = userServices.getSOQFileDetails(Constants.GRADED_CLASS_FILE_TYPE);
+		model.addAttribute("soqData", soqDataList);
+		return "GCLFile";
 	}
-
-	@GetMapping(path = "/caseAndFileValidation", produces = "application/json")
-	public String caseAndFileValidation() {
-		return userServices.caseAndFileValidation();
-	}
-
 }

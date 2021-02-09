@@ -9,16 +9,27 @@
 <link rel="stylesheet" type="text/css" href="tabs.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Interfolio</title>
+<style type="text/css">
+#msg {
+	text-align: center;
+	color: #194d19;
+	font-size: 25px;
+	font-style: italic;
+}
+</style>
 </head>
 <body>
 	<div align="center" style="padding-top: 90px;">
 		<div class="tab-content">
 			<div
 				style="background-color: grey; width: 500px; height: 60px; padding-top: 22px;">
+				<form action="" id = "my_form">
 				<input class="ui-button" type="file" id="file" name="file" /> <input
 					class="ui-button" type="button" class="button" value="Upload"
 					id="but_upload">
+				</form>
 			</div>
+			<p id="msg"></p>
 		</div>
 	</div>
 	<script>
@@ -45,6 +56,8 @@
 			});
 
 			$("#but_upload").click(function(e) {
+				if (confirm('Are you sure, you want to upload file?')) {
+				$('#but_upload').attr('disabled', true);
 				e.preventDefault();
 				var formData = {
 					file_data : base_64
@@ -56,15 +69,15 @@
 					contentType : "application/json; charset=utf-8",
 					type : "POST",
 					success : function(data) {
-						if (data == "Success") {
-							location.reload();
-						}
-						alert("Response is : " + data)
+						$('#but_upload').attr('disabled', false);
+						document.getElementById('msg').innerHTML = "Input data created successfully!";
+						document.getElementById("my_form").reset(); 
 					},
 					error : function(result) {
 						alert("Something went wrong")
 					}
 				});
+				}
 			});
 		});
 	</script>

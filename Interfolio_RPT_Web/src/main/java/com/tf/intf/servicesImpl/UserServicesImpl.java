@@ -81,9 +81,17 @@ public class UserServicesImpl implements UserServices {
 	}
 
 	public List<TemplateVO> getTemplateId() {
-		//Map<Object, Object> map = new HashMap<Object, Object>();
 		List<TemplateVO> templateVO = dao.getTemplateId();
-		//map.put("Template", templateVO);
+		return templateVO;
+	}
+	
+	public List<TemplateVO> getAllSOQFileDetails() {
+		List<TemplateVO> templateVO = dao.getAllSOQData();
+		return templateVO;
+	}
+	
+	public List<TemplateVO> getSOQFileDetails(String sOQ_FILE_TYPE) {
+		List<TemplateVO> templateVO = dao.getSOQData(sOQ_FILE_TYPE);
 		return templateVO;
 	}
 
@@ -537,4 +545,5 @@ public class UserServicesImpl implements UserServices {
 		}
 		return response;
 	}
+
 }

@@ -42,29 +42,17 @@ th, td {
 	background-color: #00274C;
 	color: white;
 }
-
-#msg {
-	text-align: center;
-	color: red;
-	font-size: 30px;
-	font-style: italic;
-}
 </style>
 	<script type="text/javascript" language="javascript">
 	var base_url = "";
 	var sub_url = "/interfolio/createCase";
-	var message = "Create case process in progress, it will take while to complete. Please check after some time."
-		$(document).ready(
-				//Enable button based on flag
-				function() {
+		$(document).ready(function() {
 					$('#t01').DataTable();
 					$.getJSON("https://api.ipify.org/?format=json", function(e) {
 						base_url = e.ip;
 					}); 
 					var url_create_case = base_url + sub_url;
 					$("#btn").click(function (e) {
-						$("#btn").attr('disabled', true);
-						document.getElementById('msg').innerHTML = message;
 						e.preventDefault();
 						$.ajax({
 							type : "GET",
@@ -78,6 +66,7 @@ th, td {
 	</script>
 </head>
 <body>
+<div>
 	<div align="center">
 		<table class="display" id="t01">
 			<thead>
@@ -98,10 +87,10 @@ th, td {
 			</tbody>
 		</table>
 	</div>
-	<div align="center" style="padding-top: 30px;">
+	<div align="center" style="padding-top: 20px;">
 		<input class="ui-button" type="button" class="button"
 			value="Create Case" id="btn" />
 	</div>
-	<p style="font-size: 12px;" id="msg"></p>
+	</div>
 </body>
 </html>

@@ -22,7 +22,10 @@ public interface UserServices {
 
 	String caseAndFileValidation();
 
-
 	String uploadCSVFile(ParamVO param);
+
+	List<TemplateVO> getAllSOQFileDetails();
+
+	List<TemplateVO> getSOQFileDetails(String sOQ_FILE_TYPE);
 
 }

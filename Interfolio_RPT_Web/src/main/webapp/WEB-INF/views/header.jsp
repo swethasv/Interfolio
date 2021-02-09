@@ -31,30 +31,19 @@
 </style>
 
 </head>
-<body style="width: auto">
+<body style="width: auto;margin: 0px;">
 	<div class="header">
 		<h1></h1>
 	</div>
 	<div id="tabs-1">
 		<ul>
-			<li><a href="../resources/fileUpload.jsp">Upload File</a></li>
+			<li style="margin:0px;"><a href="../resources/fileUpload.jsp">Upload File</a></li>
 			<li><a href="/getTemplate">Create Case</a></li>
-			<li><a href="../resources/validateData.jsp">Data Pre-processing</a></li>
-			<li><a href="../resources/soqStatsFile.jsp">SOQ Statistical Reports</a></li>
-			<li><a href="../resources/soqCommFile.jsp">SOQ Comments Reports</a></li>
-			<li><a href="../resources/GCLFile.jsp">Graded Class List Reports</a></li>
+			<li><a href="/getPreProcessData">Data Pre-processing</a></li>
+			<li><a href="/geSOQStatData">SOQ Statistical Reports</a></li>
+			<li><a href="/geSOQCommentData">SOQ Comments Reports</a></li>
+			<li><a href="/geSOQGradedClassData">Graded Class List Reports</a></li>
 		</ul>
 	</div>
-	<!--  <div class=footer> <h1></h1>  </div> -->
-	<script type="text/javascript" language="javascript">
-	/* $(function() {
-     $("#create_case").click(function (e) {
-    	 e.preventDefault();
-    	 $.get("http://localhost:8080/interfolio/getTemplate", function (data) {  
-             alert(data);  
-         });  
-     });
-     }); */
-     </script>
 </body>
 </html>

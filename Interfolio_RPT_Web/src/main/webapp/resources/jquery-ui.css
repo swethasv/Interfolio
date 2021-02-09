@@ -563,7 +563,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-menu .ui-state-focus,
 .ui-menu .ui-state-active {
-	margin: -1px;
+	/*margin: -1px;*/
 }
 
 /* icon support */
@@ -799,8 +799,8 @@ button.ui-button::-moz-focus-inner {
 	text-decoration: none;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
-	margin-bottom: -1px;
-	padding-bottom: 1px;
+	/* margin-bottom: -1px;
+	padding-bottom: 1px; */
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
 .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,

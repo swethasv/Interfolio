@@ -29,4 +29,8 @@ public interface DAO {
 
 	public int deleteRecords() throws SQLException;
 
+	List<TemplateVO> getAllSOQData();
+
+	List<TemplateVO> getSOQData(String sOQ_FILE_TYPE);
+
 }
