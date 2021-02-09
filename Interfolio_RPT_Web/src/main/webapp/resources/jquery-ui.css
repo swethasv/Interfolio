@@ -797,10 +797,12 @@ button.ui-button::-moz-focus-inner {
 	float: left;
 	padding: .5em 1em;
 	text-decoration: none;
+	outline:none;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
-	/* margin-bottom: -1px;
-	padding-bottom: 1px; */
+	 margin-bottom: -1px;
+	padding-bottom: 1px; 
+	outline:none;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
 .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
@@ -888,7 +890,7 @@ body .ui-tooltip {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #084B8A;
+	/* border: 1px solid #084B8A; */
 	background: #084B8A url("images/ui-bg_glass_100_e4f1fb_1x400.png") 50% 50% repeat-x;
 	font-weight: bold;
 	color: white;
