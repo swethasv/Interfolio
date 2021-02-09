@@ -31,7 +31,7 @@
 </style>
 
 </head>
-<body style="width: auto;margin: 0px;">
+<body style="width: auto;margin: 0px;background-color: #f7f7f7;">
 	<div class="header">
 		<h1></h1>
 	</div>
